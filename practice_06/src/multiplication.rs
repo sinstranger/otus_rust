@@ -11,7 +11,6 @@ pub fn digit_product(mut n: u32) -> u8 {
     }
 
     while n >= 10 {
-
         let mut result = 1;
         while n >= 1 {
             let multiplicator = n % 10;
@@ -22,7 +21,6 @@ pub fn digit_product(mut n: u32) -> u8 {
         }
 
         n = result
-
     }
     println!("{}", n);
     n as u8
