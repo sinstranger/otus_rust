@@ -1,14 +1,14 @@
+fn func(a: u32) -> bool {
+    if a > 120 {
+        return true;
+    }
+    false
+}
+
 fn main() {
-    let t: &str = "qwerty";
-    let r = &t;
-    let d = &r;
-    let x = &d;
+    let x = func;
 
-    println!("{}", std::mem::size_of_val(t));
-    println!("{}", std::mem::size_of_val(r));
-    println!("{}", std::mem::size_of_val(d));
-    println!("{}", std::mem::size_of_val(x));
+    let x = x(2);
 
-
-    println!("{}", ***x)
+    println!("{:?}", Result::Ok)
 }
