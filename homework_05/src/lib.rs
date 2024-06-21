@@ -1,2 +1,2 @@
-mod counters;
-mod pairs;
+pub mod counters;
+pub mod pairs;

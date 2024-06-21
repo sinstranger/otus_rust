@@ -1,27 +1,22 @@
 pub type SignedCounter = isize;
 pub type UnsignedCounter = usize;
 
-#[no_mangle]
 pub fn default_signed_counter() -> SignedCounter {
     0
 }
 
-#[no_mangle]
 pub fn default_unsigned_counter() -> UnsignedCounter {
     0
 }
 
-#[no_mangle]
 pub fn next_signed(counter: SignedCounter) -> SignedCounter {
     counter + 1
 }
 
-#[no_mangle]
 pub fn next_unsigned(counter: UnsignedCounter) -> UnsignedCounter {
     counter + 1
 }
 
-#[no_mangle]
 pub fn prev_signed(counter: SignedCounter) -> SignedCounter {
     counter - 1
 }
