@@ -1,29 +1,27 @@
-#[allow(dead_code)]
-
 pub type SignedCounter = isize;
 pub type UnsignedCounter = usize;
 
-#[allow(dead_code)]
+#[no_mangle]
 pub fn default_signed_counter() -> SignedCounter {
     0
 }
 
-#[allow(dead_code)]
+#[no_mangle]
 pub fn default_unsigned_counter() -> UnsignedCounter {
     0
 }
 
-#[allow(dead_code)]
+#[no_mangle]
 pub fn next_signed(counter: SignedCounter) -> SignedCounter {
     counter + 1
 }
 
-#[allow(dead_code)]
+#[no_mangle]
 pub fn next_unsigned(counter: UnsignedCounter) -> UnsignedCounter {
     counter + 1
 }
 
-#[allow(dead_code)]
+#[no_mangle]
 pub fn prev_signed(counter: SignedCounter) -> SignedCounter {
     counter - 1
 }
