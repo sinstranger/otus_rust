@@ -1,14 +1,14 @@
 // Принимает слайс и возвращает массив слайсов, содержащий четыре равные (насколько возможно) части исходного слайса.
 
-fn split_into_four_equal_parts<T>(slice: &[T]) -> Option<[&[T]; 4]> {
+pub fn split_into_four_equal_parts<T>(slice: &[T]) -> Option<[&[T]; 4]> {
     let len = slice.len();
     let part_size = len / 4;
     let remainder = len % 4;
 
     // Calculate the sizes of the four parts
     let mut parts_sizes = [part_size; 4];
-    for i in 0..remainder {
-        parts_sizes[i] += 1;
+    for i in parts_sizes.iter_mut().take(remainder) {
+        *i += 1;
     }
 
     // Create slices for each part
