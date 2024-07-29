@@ -15,11 +15,21 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_get_element_from_tuple() {
+    fn test_get_element_from_tuple_false() {
         let mut container = (1, 2);
         let result = get_element_from_tuple(&mut container, false);
 
         let expected = &mut 1;
+
+        assert_eq!(result, expected);
+    }
+
+    #[test]
+    fn test_get_element_from_tuple_true() {
+        let mut container = (1, 2);
+        let result = get_element_from_tuple(&mut container, true);
+
+        let expected = &mut 2;
 
         assert_eq!(result, expected);
     }
