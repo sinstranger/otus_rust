@@ -1,7 +1,7 @@
-pub mod functions;
 pub mod declarative_macro;
+pub mod functions;
 
-use functions::{one, two, three, four, five, six};
+use functions::{five, four, one, six, three, two};
 use homework_macro::my_macro;
 
 fn main() {
