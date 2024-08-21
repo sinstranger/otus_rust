@@ -19,7 +19,7 @@ impl Parse for MacroInput {
 }
 
 #[proc_macro]
-pub fn my_macro(input: TokenStream) -> TokenStream {
+pub fn functional_macro(input: TokenStream) -> TokenStream {
     // Парсинг входного потока в MacroInput
     let input = parse_macro_input!(input as MacroInput);
 
