@@ -5,12 +5,11 @@ use quote::quote;
 use syn::{parse_macro_input, Ident, LitStr, Token, punctuated::Punctuated, parse::{Parse, ParseStream}};
 
 
-// Определение структуры для парсинга входных данных
+
 struct MacroInput {
     function_names: Punctuated<LitStr, Token![,]>,
 }
 
-// Реализация парсинга для MacroInput
 impl Parse for MacroInput {
     fn parse(input: ParseStream) -> syn::Result<Self> {
         let function_names = Punctuated::parse_terminated(input)?;
@@ -20,10 +19,8 @@ impl Parse for MacroInput {
 
 #[proc_macro]
 pub fn functional_macro(input: TokenStream) -> TokenStream {
-    // Парсинг входного потока в MacroInput
     let input = parse_macro_input!(input as MacroInput);
 
-    // Фильтрация имён функций с чётным количеством символов
     let mut function_names = Vec::new();
     for lit_str in input.function_names {
         let func_name = lit_str.value();
@@ -32,7 +29,6 @@ pub fn functional_macro(input: TokenStream) -> TokenStream {
         }
     }
 
-    // Создание токенов для вызова функций и формирования кортежа
     let calls = function_names.iter().map(|ident| {
         quote! {
             #ident()
