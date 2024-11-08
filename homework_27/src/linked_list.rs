@@ -22,7 +22,7 @@ impl<T> Default for LinkedList<T> {
     }
 }
 
-impl<T: Debug> LinkedList<T> {
+impl<T: Debug + Copy> LinkedList<T> {
     pub fn push_head(&mut self, value: T) {
         let head_holder: Link<T> = self.head.take();
         let new_node: Node<T> = Node {
@@ -44,43 +44,31 @@ impl<T: Debug> LinkedList<T> {
     }
 
     pub fn iter(&self) -> ListIter<T> {
-        ListIter{
+        ListIter {
             current: self.head.clone(),
         }
     }
-
 }
 
-pub struct ListIter<T> {
+pub struct ListIter<T: Copy> {
     current: Link<T>,
 }
 
-impl<T> Iterator for ListIter<T> {
+impl<T: Copy> Iterator for ListIter<T> {
     type Item = T;
 
     fn next(&mut self) -> Option<Self::Item> {
         // let current = self.current.take();
         let current = self.current.clone();
 
-        if let Some(value) = current {
-            // self.current = current.borrow().
-            None
+        if let Some(node) = current {
+            let next = node.borrow().next.clone();
+            self.current = next;
+
+            let x = node.borrow().value.clone();
+            Some(x)
         } else {
             None
         }
-
     }
-
-    
-    // fn next(&mut self) -> Option<Self::Item> {
-    //     self.current.take().map(|node| {
-    //         let node = node.borrow();
-    //         self.current = node.next.clone();
-    //         Rc::try_unwrap(Rc::clone(&node))
-    //             .ok()
-    //             .unwrap()
-    //             .into_inner()
-    //             .value
-    //     })
-    // }
 }

@@ -16,11 +16,15 @@ use linked_list::LinkedList;
 
 fn main() {
     let mut empty_list: LinkedList<u32> = LinkedList::default();
-    println!("Empty list: {:?}", empty_list);
+    // println!("Empty list: {:?}", empty_list);
 
     empty_list.push_head(1);
-    println!("Empty list: {:?}", empty_list);
+    empty_list.push_head(2);
+    empty_list.push_head(3);
+    empty_list.push_head(4);
+    // println!("Empty list: {:?}", empty_list);
 
-    let mut iterator = empty_list.iter();
-    println!("{:?}", iterator.next())
+    for i in empty_list.iter() {
+        println!("{:?}", i)
+    }
 }
