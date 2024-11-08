@@ -10,6 +10,7 @@
 //  него существует ссылка (у предыдущего элемента).
 
 mod linked_list;
+mod tests;
 
 use linked_list::LinkedList;
 
@@ -19,4 +20,7 @@ fn main() {
 
     empty_list.push_head(1);
     println!("Empty list: {:?}", empty_list);
+
+    let mut iterator = empty_list.iter();
+    println!("{:?}", iterator.next())
 }
