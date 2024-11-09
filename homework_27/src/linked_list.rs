@@ -23,6 +23,8 @@ impl<T> Default for LinkedList<T> {
 }
 
 impl<T: Debug + Copy> LinkedList<T> {
+
+    // changes LinkedList head to new node
     pub fn push_head(&mut self, value: T) {
         let head_holder: Link<T> = self.head.take();
         let new_node: Node<T> = Node {
@@ -33,6 +35,7 @@ impl<T: Debug + Copy> LinkedList<T> {
         self.head = link_to_new_node;
     }
 
+    // returns length of LinkedList iteratively
     pub fn len(&self) -> usize {
         let mut counter: usize = 0;
         let mut current = self.head.clone();
@@ -43,6 +46,7 @@ impl<T: Debug + Copy> LinkedList<T> {
         counter
     }
 
+    // returns iterator for LinkedList
     pub fn iter(&self) -> ListIter<T> {
         ListIter {
             current: self.head.clone(),
@@ -55,10 +59,10 @@ pub struct ListIter<T: Copy> {
 }
 
 impl<T: Copy> Iterator for ListIter<T> {
+    
     type Item = T;
 
     fn next(&mut self) -> Option<Self::Item> {
-        // let current = self.current.take();
         let current = self.current.clone();
 
         if let Some(node) = current {
