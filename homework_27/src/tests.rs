@@ -77,3 +77,41 @@ mod tests_iter {
         assert_eq!(result, expected);
     }
 }
+
+#[cfg(test)]
+mod tests_split_by_index {
+    use crate::linked_list::LinkedList;
+
+    #[test]
+    fn test_len_zero() {
+        let mut empty_list: LinkedList<u8> = LinkedList::default();
+
+        let result = empty_list.split_by_index(4);
+        let result_first: Vec<u8> = result.0.iter().collect();
+        let result_second: Vec<u8> = result.1.iter().collect();
+
+        let expected_first: Vec<u8> = vec![];
+        let expected_second: Vec<u8> = vec![];
+
+        assert_eq!(result_first, expected_first);
+        assert_eq!(result_second, expected_second);
+    }
+
+    #[test]
+    fn test_common_case() {
+        let mut empty_list: LinkedList<u8> = LinkedList::default();
+        let values: Vec<u8> = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        for i in values {
+            empty_list.push_head(i);
+        }
+        let result = empty_list.split_by_index(4);
+        let result_first: Vec<u8> = result.0.iter().collect();
+        let result_second: Vec<u8> = result.1.iter().collect();
+
+        let expected_first = vec![10, 9, 8, 7];
+        let expected_second = vec![6, 5, 4, 3, 2, 1];
+
+        assert_eq!(result_first, expected_first);
+        assert_eq!(result_second, expected_second);
+    }
+}

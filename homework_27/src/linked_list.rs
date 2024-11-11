@@ -59,6 +59,24 @@ impl<T: Debug + Copy> LinkedList<T> {
         }
     }
 
+    pub fn split_by_index(self, index: usize) -> (Self, Self) {
+        let mut counter: usize = 0;
+        let mut first_list: LinkedList<T> = LinkedList::default();
+        let mut second_list: LinkedList<T> = LinkedList::default();
+
+        for i in self.iter() {
+            if counter < index {
+                first_list.push_tail(i);
+                counter += 1;
+            } else {
+                second_list.push_tail(i);
+                counter += 1;
+            }
+        }
+
+        (first_list, second_list)
+    }
+
     // returns length of LinkedList iteratively
     pub fn len(&self) -> usize {
         let mut counter: usize = 0;
