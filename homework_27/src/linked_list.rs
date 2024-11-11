@@ -34,7 +34,7 @@ impl<T: Debug + Copy> LinkedList<T> {
         self.head = link_to_new_node;
     }
 
-    // Добавить элемент в конец списка
+    // A header for function without any sense, just for dividing code visually
     pub fn push_tail(&mut self, value: T) {
         let new_node = Rc::new(RefCell::new(Node { value, next: None }));
 
@@ -59,6 +59,7 @@ impl<T: Debug + Copy> LinkedList<T> {
         }
     }
 
+    // Splits list by index in opportunicstic way =)
     pub fn split_by_index(self, index: usize) -> (Self, Self) {
         let mut counter: usize = 0;
         let mut first_list: LinkedList<T> = LinkedList::default();
@@ -77,7 +78,7 @@ impl<T: Debug + Copy> LinkedList<T> {
         (first_list, second_list)
     }
 
-    // returns length of LinkedList iteratively
+    // Returns length of LinkedList iteratively
     pub fn len(&self) -> usize {
         let mut counter: usize = 0;
         let mut current = self.head.clone();
@@ -88,7 +89,7 @@ impl<T: Debug + Copy> LinkedList<T> {
         counter
     }
 
-    // returns iterator for LinkedList
+    // Returns an iterator for LinkedList
     pub fn iter(&self) -> ListIter<T> {
         ListIter {
             current: self.head.clone(),

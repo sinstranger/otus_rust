@@ -4,11 +4,11 @@ mod tests_push_head {
 
     #[test]
     fn test_common_case() {
-        let mut empty_list: LinkedList<u32> = LinkedList::default();
-        empty_list.push_head(1);
-        empty_list.push_head(10);
-        empty_list.push_head(100);
-        let result: Vec<u32> = empty_list.iter().collect();
+        let mut linked_list: LinkedList<u32> = LinkedList::default();
+        linked_list.push_head(1);
+        linked_list.push_head(10);
+        linked_list.push_head(100);
+        let result: Vec<u32> = linked_list.iter().collect();
         let expected: Vec<u32> = vec![100, 10, 1];
         assert_eq!(result, expected);
     }
@@ -20,11 +20,11 @@ mod tests_push_tail {
 
     #[test]
     fn test_len_two() {
-        let mut empty_list: LinkedList<u32> = LinkedList::default();
-        empty_list.push_tail(1);
-        empty_list.push_tail(10);
-        empty_list.push_tail(100);
-        let result: Vec<u32> = empty_list.iter().collect();
+        let mut linked_list: LinkedList<u32> = LinkedList::default();
+        linked_list.push_tail(1);
+        linked_list.push_tail(10);
+        linked_list.push_tail(100);
+        let result: Vec<u32> = linked_list.iter().collect();
         let expected: Vec<u32> = vec![1, 10, 100];
         assert_eq!(result, expected);
     }
@@ -44,11 +44,11 @@ mod tests_len {
 
     #[test]
     fn test_len_two() {
-        let mut empty_list: LinkedList<u32> = LinkedList::default();
-        empty_list.push_head(1);
-        empty_list.push_head(1);
-        empty_list.push_head(1);
-        let len = empty_list.len();
+        let mut linked_list: LinkedList<u32> = LinkedList::default();
+        linked_list.push_head(1);
+        linked_list.push_head(1);
+        linked_list.push_head(1);
+        let len = linked_list.len();
         let expected: usize = 3;
         assert_eq!(len, expected);
     }
@@ -68,11 +68,11 @@ mod tests_iter {
 
     #[test]
     fn test_len_two() {
-        let mut empty_list: LinkedList<u32> = LinkedList::default();
-        empty_list.push_head(1);
-        empty_list.push_head(10);
-        empty_list.push_head(100);
-        let result: Vec<u32> = empty_list.iter().collect();
+        let mut linked_list: LinkedList<u32> = LinkedList::default();
+        linked_list.push_head(1);
+        linked_list.push_head(10);
+        linked_list.push_head(100);
+        let result: Vec<u32> = linked_list.iter().collect();
         let expected: Vec<u32> = vec![100, 10, 1];
         assert_eq!(result, expected);
     }
@@ -84,7 +84,7 @@ mod tests_split_by_index {
 
     #[test]
     fn test_len_zero() {
-        let mut empty_list: LinkedList<u8> = LinkedList::default();
+        let empty_list: LinkedList<u8> = LinkedList::default();
 
         let result = empty_list.split_by_index(4);
         let result_first: Vec<u8> = result.0.iter().collect();
@@ -99,12 +99,12 @@ mod tests_split_by_index {
 
     #[test]
     fn test_common_case() {
-        let mut empty_list: LinkedList<u8> = LinkedList::default();
+        let mut linked_list: LinkedList<u8> = LinkedList::default();
         let values: Vec<u8> = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
         for i in values {
-            empty_list.push_head(i);
+            linked_list.push_head(i);
         }
-        let result = empty_list.split_by_index(4);
+        let result = linked_list.split_by_index(4);
         let result_first: Vec<u8> = result.0.iter().collect();
         let result_second: Vec<u8> = result.1.iter().collect();
 
