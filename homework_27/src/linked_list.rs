@@ -23,7 +23,6 @@ impl<T> Default for LinkedList<T> {
 }
 
 impl<T: Debug + Copy> LinkedList<T> {
-
     // changes LinkedList head to new node
     pub fn push_head(&mut self, value: T) {
         let head_holder: Link<T> = self.head.take();
@@ -34,6 +33,31 @@ impl<T: Debug + Copy> LinkedList<T> {
         let link_to_new_node: Link<T> = Some(Rc::new(RefCell::new(new_node)));
         self.head = link_to_new_node;
     }
+
+// Добавить элемент в конец списка
+pub fn push_tail(&mut self, value: T) {
+    let new_node = Rc::new(RefCell::new(Node { value, next: None }));
+
+    match &self.head {
+        None => self.head = Some(Rc::clone(&new_node)),
+
+        Some(node) => {
+            let mut current = Rc::clone(node);
+            loop {
+                let next_node_link = current.borrow().next.clone();
+                match next_node_link {
+                    None => {
+                        current.borrow_mut().next = Some(Rc::clone(&new_node));
+                        break;
+                    }
+                    Some(next_node) => {
+                        current = next_node;
+                    }
+                }
+            }
+        }
+    }
+}
 
     // returns length of LinkedList iteratively
     pub fn len(&self) -> usize {
@@ -59,7 +83,6 @@ pub struct ListIter<T: Copy> {
 }
 
 impl<T: Copy> Iterator for ListIter<T> {
-    
     type Item = T;
 
     fn next(&mut self) -> Option<Self::Item> {

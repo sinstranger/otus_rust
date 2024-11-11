@@ -14,6 +14,26 @@ mod tests_push_head {
     }
 }
 
+
+#[cfg(test)]
+mod tests_push_tail {
+    use crate::linked_list::LinkedList;
+
+    #[test]
+    fn test_len_two() {
+        let mut empty_list: LinkedList<u32> = LinkedList::default();
+        empty_list.push_tail(1);
+        empty_list.push_tail(10);
+        empty_list.push_tail(100);
+        let result: Vec<u32> = empty_list.iter().collect();
+        let expected: Vec<u32> = vec![1, 10, 100];
+        assert_eq!(result, expected);
+    }
+}
+
+
+
+
 #[cfg(test)]
 mod tests_len {
     use crate::linked_list::LinkedList;
