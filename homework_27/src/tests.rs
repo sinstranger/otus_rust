@@ -14,7 +14,6 @@ mod tests_push_head {
     }
 }
 
-
 #[cfg(test)]
 mod tests_push_tail {
     use crate::linked_list::LinkedList;
@@ -30,9 +29,6 @@ mod tests_push_tail {
         assert_eq!(result, expected);
     }
 }
-
-
-
 
 #[cfg(test)]
 mod tests_len {

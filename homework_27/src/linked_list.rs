@@ -34,30 +34,30 @@ impl<T: Debug + Copy> LinkedList<T> {
         self.head = link_to_new_node;
     }
 
-// Добавить элемент в конец списка
-pub fn push_tail(&mut self, value: T) {
-    let new_node = Rc::new(RefCell::new(Node { value, next: None }));
+    // Добавить элемент в конец списка
+    pub fn push_tail(&mut self, value: T) {
+        let new_node = Rc::new(RefCell::new(Node { value, next: None }));
 
-    match &self.head {
-        None => self.head = Some(Rc::clone(&new_node)),
+        match &self.head {
+            None => self.head = Some(Rc::clone(&new_node)),
 
-        Some(node) => {
-            let mut current = Rc::clone(node);
-            loop {
-                let next_node_link = current.borrow().next.clone();
-                match next_node_link {
-                    None => {
-                        current.borrow_mut().next = Some(Rc::clone(&new_node));
-                        break;
-                    }
-                    Some(next_node) => {
-                        current = next_node;
+            Some(node) => {
+                let mut current = Rc::clone(node);
+                loop {
+                    let next_node_link = current.borrow().next.clone();
+                    match next_node_link {
+                        None => {
+                            current.borrow_mut().next = Some(Rc::clone(&new_node));
+                            break;
+                        }
+                        Some(next_node) => {
+                            current = next_node;
+                        }
                     }
                 }
             }
         }
     }
-}
 
     // returns length of LinkedList iteratively
     pub fn len(&self) -> usize {
