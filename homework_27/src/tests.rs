@@ -115,3 +115,39 @@ mod tests_split_by_index {
         assert_eq!(result_second, expected_second);
     }
 }
+
+#[cfg(test)]
+mod tests_insert_by_index {
+    use crate::linked_list::LinkedList;
+
+    #[test]
+    fn test_common_case() {
+        let mut linked_list: LinkedList<u8> = LinkedList::default();
+        let values: Vec<u8> = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        for i in values {
+            linked_list.push_head(i);
+        }
+        linked_list.insert_by_index(111, 3);
+        let result: Vec<u8> = linked_list.iter().collect();
+        let expected: Vec<u8> = vec![10, 9, 8, 111, 6, 5, 4, 3, 2, 1];
+        assert_eq!(result, expected);
+    }
+}
+
+#[cfg(test)]
+mod tests_update_by_index {
+    use crate::linked_list::LinkedList;
+
+    #[test]
+    fn test_common_case() {
+        let mut linked_list: LinkedList<u8> = LinkedList::default();
+        let values: Vec<u8> = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        for i in values {
+            linked_list.push_head(i);
+        }
+        linked_list.update_by_index(111, 3);
+        let result: Vec<u8> = linked_list.iter().collect();
+        let expected: Vec<u8> = vec![10, 9, 8, 111, 6, 5, 4, 3, 2, 1];
+        assert_eq!(result, expected);
+    }
+}

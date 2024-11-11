@@ -78,6 +78,41 @@ impl<T: Debug + Copy> LinkedList<T> {
         (first_list, second_list)
     }
 
+    pub fn insert_by_index(&mut self, value: T, index: usize) {
+        let mut counter: usize = 0;
+        let iterator: ListIter<T> = self.iter();
+
+        self.head = None;
+
+        for i in iterator {
+            if counter < index {
+                counter += 1;
+                self.push_tail(i);
+            } else if counter == index {
+                self.push_tail(value);
+                counter += 1;
+            } else {
+                self.push_tail(i);
+            }
+        }
+    }
+
+    pub fn update_by_index(&mut self, value: T, index: usize) {
+        let mut current_index = 0;
+        let mut current_node_option = self.head.clone();
+
+        while let Some(current_node_rc) = current_node_option {
+            if current_index == index {
+                current_node_rc.borrow_mut().value = value;
+                return;
+            }
+            current_index += 1;
+            current_node_option = current_node_rc.borrow().next.clone();
+        }
+
+        panic!("Index is bigger then lenght of LinkedList");
+    }
+
     // Returns length of LinkedList iteratively
     pub fn len(&self) -> usize {
         let mut counter: usize = 0;
