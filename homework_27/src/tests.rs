@@ -6,11 +6,11 @@ mod tests_push_head {
     fn test_common_case() {
         let mut empty_list: LinkedList<u32> = LinkedList::default();
         empty_list.push_head(1);
-        let string = format!("{:?}", empty_list);
-        let expected =
-            "LinkedList { head: Some(RefCell { value: Node { value: 1, next: None } }) }"
-                .to_string();
-        assert_eq!(string, expected);
+        empty_list.push_head(10);
+        empty_list.push_head(100);
+        let result: Vec<u32> = empty_list.iter().collect();
+        let expected: Vec<u32> = vec![100, 10, 1];
+        assert_eq!(result, expected);
     }
 }
 
