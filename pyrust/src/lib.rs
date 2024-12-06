@@ -1,12 +1,16 @@
-use image::{DynamicImage, GenericImageView, ImageFormat, RgbaImage, Rgba};
+use image::{DynamicImage, GenericImageView, ImageFormat, Rgba, RgbaImage};
 use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
 use std::fs::File;
 use std::io::{Cursor, Read};
 
-
 #[pyfunction]
-fn resize_image_from_bytes(image_bytes: Vec<u8>, width: u32, height: u32, format: &str,) -> PyResult<Vec<u8>> {
+fn resize_image_from_bytes(
+    image_bytes: Vec<u8>,
+    width: u32,
+    height: u32,
+    format: &str,
+) -> PyResult<Vec<u8>> {
     // Читаем изображение из байтов
     let img = image::load_from_memory(&image_bytes).map_err(|e| {
         pyo3::exceptions::PyIOError::new_err(format!("Failed to load image: {}", e))
@@ -36,10 +40,8 @@ fn resize_image_from_bytes(image_bytes: Vec<u8>, width: u32, height: u32, format
     Ok(buffer)
 }
 
-
 #[pyfunction]
 fn glitch_effect(image_bytes: Vec<u8>, offset: u32, format: &str) -> PyResult<Vec<u8>> {
-
     let img = image::load_from_memory(&image_bytes).map_err(|e| {
         pyo3::exceptions::PyIOError::new_err(format!("Failed to load image: {}", e))
     })?;
@@ -79,7 +81,6 @@ fn glitch_effect(image_bytes: Vec<u8>, offset: u32, format: &str) -> PyResult<Ve
 
     Ok(buffer)
 }
-
 
 /// A Python module implemented in Rust.
 #[pymodule]
